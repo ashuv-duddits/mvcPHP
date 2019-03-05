@@ -1,0 +1,47 @@
+<h1>Привет!</h1>
+<?php
+/** @var user_model $user */
+$user = $this->user;
+?>
+
+<? if($user):?>
+	<div>
+		Здравствуйте
+		<span class="id"><?=$user->getId();?></span><br>
+		<span class="name"><?=$user->getLogin();?></span><br>
+	</div>
+<? else:?>
+	Пользователь не найден
+<? endif;?>
+
+<br />
+<h3>Разлогиниться</h3>
+<br />
+
+<form action="/index/logout" method="POST">
+	<input type="submit" value="Разлогинить">
+</form>
+
+<br />
+<h3>Можете оставить сообщение и прикрепить фото</h3>
+<br />
+<br />
+<?php if ($this->error) :?>
+	<h2 style="color: red">Сообщение не может быть пустым</h2>
+<?php endif; ?>
+<br />
+<form enctype="multipart/form-data" action="/user/data" method="POST">
+	Message:<br>
+	<textarea name="message" style="width: 250px; height: 100px;"></textarea><br>
+	Прикрепить картинку:<br>
+	<input name="userfile" type="file" /><br>
+	<input type="submit" value="Отправить">
+</form>
+
+<br />
+<h3>Показать всех пользователей и их фото</h3>
+<br />
+<br />
+<form action="/users/index">
+	<input type="submit" value="Показать">
+</form>

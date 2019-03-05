@@ -1,0 +1,16 @@
+<h1>Список пользователей</h1>
+
+<?php foreach($this->users as $user) :?>
+<h2><?php echo $user->getLogin(); ?></h2>
+    <?php foreach($this->files as $file) :?>
+        <?php if ($user->getId() == $file->getUserId()) :?>
+            <?php $url = $file->getUrl(); ?>
+            <img src="<?php echo $url ?>" alt="Картинка">
+            <br />
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endforeach; ?>
+<br>
+<form action="/index/index">
+    <button type="submit">Вернуться</button>
+</form>
