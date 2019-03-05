@@ -8,7 +8,7 @@
 						$url = $file->getUrl();
 						?>
             <? if (file_exists(realpath('images') . DIRECTORY_SEPARATOR . $url)):?>
-								<img src="image.php/?id=<?=$file->getId();?>">
+								<img src="/image.php/?id=<?=$file->getId();?>">
             <? endif; ?>
             <br />
         <?php endif; ?>
