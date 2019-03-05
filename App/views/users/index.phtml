@@ -4,8 +4,12 @@
 <h2><?php echo $user->getLogin(); ?></h2>
     <?php foreach($this->files as $file) :?>
         <?php if ($user->getId() == $file->getUserId()) :?>
-            <?php $url = $file->getUrl(); ?>
-            <img src="<?php echo "images/" . $url ?>" alt="Картинка">
+            <?php
+						$url = $file->getUrl();
+						?>
+            <? if (file_exists(realpath('images') . DIRECTORY_SEPARATOR . $url)):?>
+								<img src="image.php/?id=<?=$file->getId();?>">
+            <? endif; ?>
             <br />
         <?php endif; ?>
     <?php endforeach; ?>
