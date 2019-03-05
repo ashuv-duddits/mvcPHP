@@ -5,7 +5,7 @@
     <?php foreach($this->files as $file) :?>
         <?php if ($user->getId() == $file->getUserId()) :?>
             <?php $url = $file->getUrl(); ?>
-            <img src="<?php echo $url ?>" alt="Картинка">
+            <img src="<?php echo "images/" . $url ?>" alt="Картинка">
             <br />
         <?php endif; ?>
     <?php endforeach; ?>

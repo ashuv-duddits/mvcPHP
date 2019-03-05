@@ -30,9 +30,9 @@ class file_model_db extends Core_DB
         $url = $file->getUrl();
         $id = $file->getId();
         $pdo = self::$pdo;
-        $query = "UPDATE files SET url='$url' WHERE id=:id;";
+        $query = "UPDATE files SET url=:url WHERE id='$id';";
         $prepared = $pdo->prepare($query);
-        $ret = $prepared->execute(['id' => $id]);
+        $ret = $prepared->execute(['url' => $url]);
         if (!$ret) {
             print_r($pdo->errorInfo());
             die();

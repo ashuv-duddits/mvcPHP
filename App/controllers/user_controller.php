@@ -22,9 +22,10 @@ class user_controller extends Core_Abstract_Controller
 
         if (!empty($_FILES['userfile']['tmp_name'])) {
             $fileContent = file_get_contents($_FILES['userfile']['tmp_name']);
-            $url = '../../../images/'. $postId . '.png';
+            $nameFile = $postId . '.png';
+            $url = realpath('images') . DIRECTORY_SEPARATOR . $nameFile;
             $fileModel = file_model_db::getModelById($postId);
-            $fileModel->setUrl($url);
+            $fileModel->setUrl($nameFile);
             file_model_db::updateFile($fileModel);
             file_put_contents($url, $fileContent);
         }
