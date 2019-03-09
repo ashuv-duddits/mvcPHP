@@ -1,15 +1,15 @@
 <?php
-class file_model
+class Post
 {
     protected $id;
     protected $user_id;
-    protected $url;
+    protected $message;
 
     public function __construct($userData)
     {
-        $this->id = $userData['id'];
+        $this->id = $userData['id'] ?? 0;
         $this->user_id = $userData['user_id'];
-        $this->url = $userData['url'];
+        $this->message = $userData['message'];
     }
 
     public function getId()
@@ -22,13 +22,8 @@ class file_model
         return $this->user_id;
     }
 
-    public function getUrl()
+    public function getMessage()
     {
-        return $this->url;
-    }
-
-    public function setUrl($url)
-    {
-        return $this->url = $url;
+        return $this->message;
     }
 }

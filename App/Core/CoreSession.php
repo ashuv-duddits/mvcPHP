@@ -1,5 +1,7 @@
 <?php
-class Core_Session
+//namespace App\Core;
+
+class CoreSession
 {
     const KEY_USER = 'user_id';
     public function __construct()

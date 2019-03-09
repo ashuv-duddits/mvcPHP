@@ -1,5 +1,5 @@
 <?php
-class user_model
+class User
 {
     protected $id;
     protected $login;

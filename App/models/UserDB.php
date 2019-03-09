@@ -1,9 +1,9 @@
 <?php
-class user_model_db  extends Core_DB
+class UserDB  extends CoreDB
 {
     /**
      * @param int $id
-     * @return null|user_model
+     * @return null|User
      */
     public static function getModelById(int $id)
     {
@@ -19,11 +19,11 @@ class user_model_db  extends Core_DB
         if (!$userData) {
             return null;
         }
-        return new user_model($userData);
+        return new User($userData);
     }
     /**
      * @param string $login
-     * @return null|user_model
+     * @return null|User
      */
     public static function getModelByLogin(string $login)
     {
@@ -40,12 +40,12 @@ class user_model_db  extends Core_DB
             return null;
         }
         var_dump($userData);
-        return new user_model($userData);
+        return new User($userData);
     }
     /**
-     * @param user_model $user
+     * @param User $user
      */
-    public static function saveUser(user_model $user)
+    public static function saveUser(User $user)
     {
         $login = $user->getLogin();
         $password = $user->getPassword();
@@ -59,5 +59,26 @@ class user_model_db  extends Core_DB
         }
         $userId = $pdo->lastInsertId();
         return $userId;
+    }
+
+    public static function getModels()
+    {
+        $pdo = self::$pdo;
+        $query = "SELECT * FROM users;";
+        $prepared = $pdo->prepare($query);
+        $ret = $prepared->execute();
+        if (!$ret) {
+            print_r($pdo->errorInfo());
+            die();
+        }
+        $usersData = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        if (!$usersData) {
+            return null;
+        }
+        $users = [];
+        foreach ($usersData as $userData) {
+            $users[] = new User($userData);
+        }
+        return $users;
     }
 }

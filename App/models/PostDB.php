@@ -1,11 +1,11 @@
 <?php
-class post_model_db extends Core_DB
+class PostDB extends CoreDB
 {
     /**
-     * @param post_model $post
+     * @param post $post
      * @return int $postId
      */
-    public static function savePost(post_model $post)
+    public static function savePost(post $post)
     {
         $message = $post->getMessage();
         $userId = $post->getUserId();
